@@ -53,22 +53,21 @@ export default class StepSlider {
               });
 
       this.#slider.querySelectorAll('.slider__step')[this.value].classList.add('slider__step-active');
-
     };
 
     document.addEventListener('pointermove', onMove);
 
     document.addEventListener('pointerup', (event) => {
 
+      let leftPercents = this.value / segments * 100;
+      thumb.style.left = `${leftPercents}%`;
+      progress.style.width = `${leftPercents}%`;
+
       const stepsDragAndDropEvent = new CustomEvent('slider-change', { // имя события должно быть именно 'slider-change'
         detail: this.value, // значение 0, 1, 2, 3, 4
         bubbles: true // событие всплывает - это понадобится в дальнейшем
       });
       document.body.querySelector('.slider').dispatchEvent(stepsDragAndDropEvent);
-
-      let leftPercents = this.value / segments * 100;
-      thumb.style.left = `${leftPercents}%`;
-      progress.style.width = `${leftPercents}%`;
 
       this.#slider.classList.remove('.slider_dragging');
 
