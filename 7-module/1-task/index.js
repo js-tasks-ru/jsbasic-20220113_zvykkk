@@ -12,7 +12,6 @@ export default class RibbonMenu {
 
   #createRibbon () {
     this.#ribbon = createElement(this.#template());
-
     this.#ribbon.querySelector('.ribbon__inner').addEventListener('click', this.#onCategoryClick);
   }
 
@@ -40,9 +39,13 @@ export default class RibbonMenu {
       <img src="../../assets/images/icons/angle-icon.svg" alt="icon">
     </button>
     <nav class="ribbon__inner">
-      ${this.categories.map((item) => `
-        <a href="#" class="ribbon__item" data-id=${item.id}>${item.name}</a>
-      `)}
+      ${
+      this.categories.map((item) => `
+        <a href="#" class="ribbon__item" data-id = "${item.id}">
+            ${item.name}
+        </a>`
+       ).join('')
+      }
     </nav>
     <button class="ribbon__arrow ribbon__arrow_right ribbon__arrow_visible">
       <img src="../../assets/images/icons/angle-icon.svg" alt="icon">

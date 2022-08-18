@@ -27,7 +27,6 @@ export default class Cart {
       let pushItem = true;
 
       this.cartItems.map(item => {
-        console.log(item);
         if (!item.product.id.localeCompare(product.id)) {
           item.count += 1;
           this.cartItem.count = item.count;
@@ -211,7 +210,7 @@ export default class Cart {
             <p>
                 Order successful! Your order is being cooked :) <br>
                 We’ll notify you about delivery time shortly.<br>
-                <img src="/assets/images/delivery.gif">
+                <img src="../../assets/images/delivery.gif">
             </p>
         </div>
     `;
@@ -219,6 +218,7 @@ export default class Cart {
     response.then(() => {
         this.modal.setTitle('Success!');
         this.cartItems = [];
+      this.cartIcon.update(this);
         this.modal.setBody(createElement(template));
       });
   }
